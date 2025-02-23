@@ -62,7 +62,7 @@ def mark_region_end(region_name: str):
 def get_region_info(region_name: str):
     return MarinadeState().get_region_info(region_name)
 
-def replay_region(region_name: str):
+def replay_region(region_name: str, overrides: dict = None):
     region_info = MarinadeState().get_region_info(region_name)
     if not region_info.is_complete:
         error_str = "Attempt to replay region "
@@ -72,7 +72,7 @@ def replay_region(region_name: str):
         print(f"Replaying region {region_name}")
         region_info.is_replay = True
         frame = region_info.serialized_frame
-        grlt_fn = lambda: skt.deserialize_frame(frame, run=True)
+        grlt_fn = lambda: skt.deserialize_frame(frame, run=True, replace_locals=overrides)
         grlt = greenlet.greenlet(grlt_fn)
         grlt.switch()
         print(f"Finished replaying region {region_name}")
