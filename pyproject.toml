@@ -1,0 +1,37 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "marinade"
+version = "0.1.0"
+description = "A Python project requiring greenlet, cython, and sauerkraut"
+readme = "README.md"
+requires-python = ">=3.13"
+license = {text = "MIT"}
+authors = [
+    {name = "Zane Fink", email = "zanef2@illinois.edu"},
+    {name = "Mathew Jacob", email = "mkjacob3@illinois.edu"}
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+]
+dependencies = [
+    "greenlet",
+    "sauerkraut"
+]
+
+[project.urls]
+Homepage = "https://github.com/zwfink/marinade"
+Repository = "https://github.com/yourusername/marinade.git"
+Issues = "https://github.com/yourusername/marinade/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["marinade/"]
+
+[tool.hatch.version]
+path = "marinade/__init__.py"
